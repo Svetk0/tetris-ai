@@ -1,0 +1,36 @@
+{
+  "name": "bubble-tetris",
+  "version": "1.0.0",
+  "private": false,
+  "description": "A modern bubble-styled Tetris game built with Next.js",
+  "author": "Your Name",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/your-username/bubble-tetris.git"
+  },
+  "bugs": {
+    "url": "https://github.com/your-username/bubble-tetris/issues"
+  },
+  "homepage": "https://github.com/your-username/bubble-tetris#readme",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "next": "14.0.4",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "devDependencies": {
+    "@types/node": "^20",
+    "@types/react": "^18",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.0.4",
+    "sass": "^1.69.7",
+    "typescript": "^5"
+  }
+}
