@@ -34,8 +34,8 @@ Bubble Tetris is a fresh take on the traditional Tetris game, featuring bubble-s
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/bubble-tetris.git
-cd bubble-tetris
+git clone https://github.com/your-username/tetris-ai.git
+cd tetris-ai
 ```
 
 2. Install dependencies:
