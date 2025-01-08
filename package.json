@@ -3,16 +3,16 @@
   "version": "1.0.0",
   "private": false,
   "description": "A modern bubble-styled Tetris game built with Next.js",
-  "author": "Your Name",
+  "author": "Svetlana Solomatnikova",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-username/bubble-tetris.git"
+    "url": "git+https://github.com/svetk0/tetris-ai.git"
   },
   "bugs": {
-    "url": "https://github.com/your-username/bubble-tetris/issues"
+    "url": "https://github.com/svetk0/tetris-ai/issues"
   },
-  "homepage": "https://github.com/your-username/bubble-tetris#readme",
+  "homepage": "https://github.com/svetk0/tetris-ai#readme",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
