@@ -1,6 +1,6 @@
 # Bubble Tetris by AI
 
-<a href="https://svetk0.github.io/tetris-ai/">
+<a href="https://tetris-ai-five.vercel.app/">
 <div align="center">
 <img src="./public/screenshot.png" alt="screenshot game" width="500"/>
 </div>
@@ -21,8 +21,6 @@ Bubble Tetris is a fresh take on the traditional Tetris game, featuring bubble-s
 - 👾 Interactive helper character with emotions
 - 🔮 Next piece preview window
 - 💫 Bubble explosion animations
-- 📱 Responsive design for all devices
-- ⚡ Fast-paced gameplay with increasing difficulty
 
 ## Tech Stack
 
@@ -36,7 +34,7 @@ Bubble Tetris is a fresh take on the traditional Tetris game, featuring bubble-s
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/tetris-ai.git
+git clone https://github.com/svetk0/tetris-ai.git
 cd tetris-ai
 ```
 
