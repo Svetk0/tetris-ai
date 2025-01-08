@@ -12,7 +12,7 @@
   "bugs": {
     "url": "https://github.com/svetk0/tetris-ai/issues"
   },
-  "homepage": "https://github.com/svetk0/tetris-ai#readme",
+  "homepage": "https://github.com/svetk0/tetris-ai",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

@@ -1,9 +1,11 @@
 # Bubble Tetris by AI
 
-![Bubble Tetris Screenshot](./public/screenshot.png)
-
-[Live Demo]()
-
+<a href="https://svetk0.github.io/tetris-ai/">
+<div align="center">
+<img src="./public/screenshot.png" alt="screenshot game" width="500"/>
+</div>
+[Live Demo]
+</a>
 A modern implementation of the classic Tetris game featuring a unique bubble design, built with Next.js and TypeScript.
 
 ## Description
