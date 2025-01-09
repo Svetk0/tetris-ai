@@ -396,6 +396,41 @@ const Tetris = () => {
           />
         ))}
       </div>
+      <div className={styles.controlPanel}>
+        <div className={styles.controlRow}>
+          <button
+            className={`${styles.controlButton} ${styles.rotate}`}
+            onTouchStart={rotate}
+            onClick={(e) => e.preventDefault()}
+          >
+            ↻
+          </button>
+        </div>
+        <div className={styles.controlRow}>
+          <button
+            className={styles.controlButton}
+            onTouchStart={moveLeft}
+            onClick={(e) => e.preventDefault()}
+          >
+            ←
+          </button>
+          <button
+            className={styles.controlButton}
+            onTouchStart={moveDown}
+            onTouchEnd={(e) => e.preventDefault()}
+            onClick={(e) => e.preventDefault()}
+          >
+            ↓
+          </button>
+          <button
+            className={styles.controlButton}
+            onTouchStart={moveRight}
+            onClick={(e) => e.preventDefault()}
+          >
+            →
+          </button>
+        </div>
+      </div>
       <div className={styles.sidePanel}>
         <GameHelper
           score={gameState.score}
