@@ -319,7 +319,7 @@ const Tetris = () => {
   useEffect(() => {
     if (gameState.gameOver) return;
 
-    const speed = Math.max(100, 1000 - (gameState.level - 1) * 100);
+    const speed = Math.max(50, 1000 - (gameState.level - 1) * 150);
     const gameLoop = setInterval(() => {
       moveDown();
     }, speed);
