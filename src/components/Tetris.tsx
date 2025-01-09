@@ -102,6 +102,7 @@ const Tetris = () => {
   const [explosions, setExplosions] = useState<ExplosionAnimation[]>([]);
   const [explosionCounter, setExplosionCounter] = useState(0);
   const [nextPiece, setNextPiece] = useState<Tetromino>(() => createNewPiece());
+  const [showSidePanel, setShowSidePanel] = useState(false);
 
   // Check if a move is valid
   const isValidMove = useCallback(
@@ -431,7 +432,15 @@ const Tetris = () => {
           </button>
         </div>
       </div>
-      <div className={styles.sidePanel}>
+      <button
+        className={styles.toggleButton}
+        onClick={() => setShowSidePanel(!showSidePanel)}
+      >
+        ⚙️
+      </button>
+      <div
+        className={`${styles.sidePanel} ${showSidePanel ? styles.visible : ""}`}
+      >
         <GameHelper
           score={gameState.score}
           isGameOver={gameState.gameOver}
