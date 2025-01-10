@@ -103,6 +103,7 @@ const Tetris = () => {
   const [explosionCounter, setExplosionCounter] = useState(0);
   const [nextPiece, setNextPiece] = useState<Tetromino>(() => createNewPiece());
   const [showSidePanel, setShowSidePanel] = useState(false);
+  const [isFastDrop, setIsFastDrop] = useState(false);
 
   // Check if a move is valid
   const isValidMove = useCallback(
@@ -241,9 +242,17 @@ const Tetris = () => {
 
       if (!isGameOver) {
         setNextPiece(newNextPiece);
+        setIsFastDrop(false);
       }
     }
-  }, [gameState, isValidMove, createBoardWithPiece, clearLines, nextPiece]);
+  }, [
+    gameState,
+    isValidMove,
+    createBoardWithPiece,
+    clearLines,
+    nextPiece,
+    createNewPiece,
+  ]);
 
   const moveLeft = useCallback(() => {
     if (!gameState.currentPiece) return;
@@ -303,6 +312,58 @@ const Tetris = () => {
     }
   }, [gameState, isValidMove]);
 
+  // Add new function for hard drop
+  const hardDrop = useCallback(() => {
+    if (!gameState.currentPiece) return;
+
+    let newPiece = { ...gameState.currentPiece };
+    let dropDistance = 0;
+
+    // Find the maximum distance the piece can drop
+    while (
+      isValidMove(
+        {
+          ...newPiece,
+          position: {
+            ...newPiece.position,
+            y: newPiece.position.y + dropDistance + 1,
+          },
+        },
+        gameState.board
+      )
+    ) {
+      dropDistance++;
+    }
+
+    // Update piece position to the lowest valid position
+    newPiece.position.y += dropDistance;
+
+    // Update game state with the dropped piece
+    const newBoard = createBoardWithPiece(newPiece, gameState.board);
+    const { newBoard: clearedBoard, linesCleared } = clearLines(newBoard);
+
+    const isGameOver = !isValidMove(nextPiece, clearedBoard);
+    const newNextPiece = createNewPiece();
+
+    setGameState((prev) => ({
+      ...prev,
+      board: clearedBoard,
+      currentPiece: isGameOver ? null : nextPiece,
+      gameOver: isGameOver,
+    }));
+
+    if (!isGameOver) {
+      setNextPiece(newNextPiece);
+    }
+  }, [
+    gameState,
+    isValidMove,
+    createBoardWithPiece,
+    clearLines,
+    nextPiece,
+    createNewPiece,
+  ]);
+
   // Start game
   useEffect(() => {
     if (!gameState.currentPiece && !gameState.gameOver) {
@@ -320,13 +381,15 @@ const Tetris = () => {
   useEffect(() => {
     if (gameState.gameOver) return;
 
-    const speed = Math.max(50, 1000 - (gameState.level - 1) * 150);
+    const normalSpeed = Math.max(50, 1000 - (gameState.level - 1) * 150);
+    const currentSpeed = isFastDrop ? normalSpeed / 20 : normalSpeed;
+
     const gameLoop = setInterval(() => {
       moveDown();
-    }, speed);
+    }, currentSpeed);
 
     return () => clearInterval(gameLoop);
-  }, [gameState.gameOver, gameState.level, moveDown]);
+  }, [gameState.gameOver, gameState.level, moveDown, isFastDrop]);
 
   // Render current piece on the board
   const displayBoard = gameState.currentPiece
@@ -345,7 +408,7 @@ const Tetris = () => {
           moveRight();
           break;
         case "ArrowDown":
-          moveDown();
+          setIsFastDrop(true);
           break;
         case "ArrowUp":
         case " ": // Space key
@@ -355,9 +418,19 @@ const Tetris = () => {
       }
     };
 
+    const handleKeyUp = (event: KeyboardEvent) => {
+      if (event.key === "ArrowDown") {
+        setIsFastDrop(false);
+      }
+    };
+
     window.addEventListener("keydown", handleKeyPress);
-    return () => window.removeEventListener("keydown", handleKeyPress);
-  }, [gameState.gameOver, moveDown, moveLeft, moveRight, rotate]);
+    window.addEventListener("keyup", handleKeyUp);
+    return () => {
+      window.removeEventListener("keydown", handleKeyPress);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  }, [gameState.gameOver, moveLeft, moveRight, rotate]);
 
   const restartGame = useCallback(() => {
     const firstPiece = createNewPiece();
@@ -417,8 +490,8 @@ const Tetris = () => {
           </button>
           <button
             className={styles.controlButton}
-            onTouchStart={moveDown}
-            onTouchEnd={(e) => e.preventDefault()}
+            onTouchStart={() => setIsFastDrop(true)}
+            //onTouchEnd={() => setIsFastDrop(false)}
             onClick={(e) => e.preventDefault()}
           >
             ↓

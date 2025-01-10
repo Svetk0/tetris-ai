@@ -169,7 +169,7 @@
 .controlPanel {
     display: none;
     padding: 0.75rem;
-    width: fit-content;
+    width: 100vw;
     background: rgba(36, 41, 46, 0.8);
     border-radius: 1.5rem;
     backdrop-filter: blur(4px);
@@ -189,7 +189,7 @@
 
 .controlRow {
     display: flex;
-    gap: clamp(1rem, 10vw, 4rem);
+    gap: clamp(1rem, 30vw, 30rem);
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -211,20 +211,20 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
-    position: relative; // Add this
+    position: relative;
 
     &:active {
         transform: scale(0.95);
         background: rgba(48, 54, 61, 0.9);
     }
 
-    &::before {
+    &:not(:nth-child(2))::before {
         content: '';
         position: absolute;
         top: -10px;
-        left: -10px;
-        right: -10px;
-        bottom: -10px;
+        left: clamp(-200px, -20vw, -10px);
+        right: clamp(-200px, -20vw, -10px);
+        bottom: -20px;
     }
 
     &.rotate {
