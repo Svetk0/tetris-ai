@@ -519,11 +519,16 @@ const Tetris = () => {
           isGameOver={gameState.gameOver}
           level={gameState.level}
         />
-        <NextPiece piece={nextPiece} />
         <div className={styles.gameInfo}>
-          <div className={styles.score}>Score: {gameState.score}</div>
-          <div className={styles.level}>Level: {gameState.level}</div>
-          <div className={styles.lines}>Lines: {gameState.lines}</div>
+          <div className={styles.rowContainer}>
+            <NextPiece piece={nextPiece} />
+            <div className={styles.columnContainer}>
+              <div className={styles.score}>Score: {gameState.score}</div>
+              <div className={styles.level}>Level: {gameState.level}</div>
+              <div className={styles.lines}>Lines: {gameState.lines}</div>
+            </div>
+          </div>
+
           {gameState.gameOver && (
             <>
               <div className={styles.gameOver}>Game Over!</div>
