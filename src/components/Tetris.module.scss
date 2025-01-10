@@ -201,7 +201,7 @@
 .controlPanel {
     display: none;
     padding: 0.75rem;
-    width: 100vw;
+    width: 95vw;
     background: rgba(36, 41, 46, 0.8);
     border-radius: 1.5rem;
     backdrop-filter: blur(4px);
@@ -221,15 +221,17 @@
 
 .controlRow {
     display: flex;
-    gap: clamp(1rem, 30vw, 30rem);
+    gap: clamp(1rem, 27vw, 30rem);
     align-items: center;
     justify-content: center;
     width: 100%;
+    padding-inline: 0.5rem;
 }
 
 .controlButton {
     width: 40px;
     height: 40px;
+    aspect-ratio: 1/1;
     border-radius: 50%;
     background: rgba(36, 41, 46, 0.8);
     border: none;
@@ -261,6 +263,8 @@
 
     &.rotate {
         background: linear-gradient(135deg, #2188ff, #0366d6);
+        width: 97%;
+        border-radius: 1rem;
 
         &:active {
             background: linear-gradient(135deg, #2188ff, #044289);
