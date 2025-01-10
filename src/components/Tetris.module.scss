@@ -176,7 +176,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 0.75rem;
+        gap: 1.3rem;
         position: fixed;
         bottom: 0.5rem;
         left: 50%;
@@ -187,7 +187,7 @@
 
 .controlRow {
     display: flex;
-    gap: 1rem;
+    gap: clamp(1rem, 10vw, 4rem);
     align-items: center;
     justify-content: center;
     width: 100%;
@@ -209,10 +209,21 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease;
     -webkit-tap-highlight-color: transparent;
+    position: relative; // Add this
 
     &:active {
         transform: scale(0.95);
         background: rgba(48, 54, 61, 0.9);
+    }
+
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: -10px;
+        right: -10px;
+        bottom: -10px;
     }
 
     &.rotate {
